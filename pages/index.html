@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <script type="text/javascript">
+        var nodeLocation= "http://localhost:8080/";
+        //var nodeLocation = "https://floating-eyrie-45682.herokuapp.com/";
+
+        var aggiungiAssignment = function(){
+          var newUrl = nodeLocation + 'aggiuntaAssignment.html';
+          document.location.href = newUrl;
+        };
+        var visualizzaAssignment = function() {
+          var newUrl = nodeLocation + 'visualizzazione.html';
+          document.location.href = newUrl;
+        };
+        var rimuoviAssignment = function() {
+          var newUrl = nodeLocation + 'rimuoviAssignment.html';
+          document.location.href = newUrl;
+        };
+        var modificaAssignment = function(){
+          var newUrl = nodeLocation + 'modificaAssignment.html';
+          document.location.href = newUrl;
+        };
+      </script>
+    </head>
+
+    <body>
+      <div>
+        <button onclick="aggiungiAssignment()">aggiungi assignment</button><br>
+        <button onclick="visualizzaAssignment()">visualizza assignment</button><br>
+        <button onclick="rimuoviAssignment()">rimuovi assignment</button><br>
+        <button onclick="modificaAssignment()">modifica assignment</button><br>
+      </div>
+    </body>
+</html>
