@@ -1,5 +1,5 @@
 var nodeLocation = "http://localhost:8080/";
-var serverLocation = "http://localhost:8080/";
+var serverLocation = "https://nameless-inlet-27677.herokuapp.com/";
 
 var invio = function () {
   var taskId = document.getElementById("taskId");
@@ -12,7 +12,8 @@ var invio = function () {
     "assignmentResult" : assignmentResult.value
   };
 
-  var url = nodeLocation + "assignment";
+  //var url = nodeLocation + "assignment";
+    var url = serverLocation + "assignment";
   fetch(url,{
     method: "post",
     headers: {
