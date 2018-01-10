@@ -1,4 +1,4 @@
-var nodeLocation = "http://localhost:8080/";
+var nodeLocation = "http://localhost:5000/";
 var serverLocation = "https://nameless-inlet-27677.herokuapp.com/";
 
 var invio = function () {
@@ -13,7 +13,7 @@ var invio = function () {
   };
 
   //var url = nodeLocation + "assignment";
-    var url = serverLocation + "assignment";
+var url = serverLocation + "assignment";
   fetch(url,{
     method: "post",
     headers: {
@@ -24,5 +24,7 @@ var invio = function () {
 
     var newUrl = serverLocation + "index.html";
     document.location.href = newUrl;
+  }).catch(function(){
+      alert("Error");
   });
 };

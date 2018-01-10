@@ -64,34 +64,81 @@ app.post('/assignment', function(req, res){
             return handleError(err);
         }
         else {
+            
             id = id + 1;
-            console.log(array[0]);
-            res.statusCode(200);
+            console.log(newAssignment);
         }
-    
+        
+        res.statusCode = 200;
+        res.send("");
     });
 });
 
 app.get('/assignment', function(req, res){
-    res.send(array);
+    console.log("Searching all assignments...");
+    Assignment.find(function (err, ass) {
+        if (err) { res.send(err); }
+        console.log(ass);
+        res.json(ass);
+    });
+    //res.send(array);
 });
 
 app.delete('/assignment/:assignmentId', function(req,res){
     var assignmentID = req.params.assignmentId;
     
-    for(var i = 0; i < array.length; i++){
+    /*for(var i = 0; i < array.length; i++){
         if(array[i].assignmentId == assignmentID)
             {
                 array.splice(i, 1);
             }
-    }
+    }*/
     
-    
-    res.statusCode(200);
+    Assignment.remove({assignmentId: assignmentID}, function(err){
+        if (err) { res.status(404).send(err); }
+		else{
+            console.log("Assignment deleted");
+            res.status(200).send("");
+        }
+	});
 });
 
-app.put('/assignment/:assignmentID', function(req, res){
+app.put('/assignment/:assignmentId', function(req, res){
+    var assignmentID = req.params.assignmentId;
+    var taskID = req.body.taskId;
+    var workerID = req.body.workerId;
+    var assignmentResult = req.body.assignmentResult;
     
+    console.log("Updating assignment...");
+    Assignment.findOne({ assignmentId: assignmentID }, function (err, doc){
+        console.log("Prima");
+        console.log(doc);
+        if(err){
+                console.log("ERROR...");
+                return handleError(err);
+        }
+        else if(doc == null){
+            console.log("Assignment not found");
+            res.status(404).send("Not found");
+        }
+        else{
+            doc.taskId = taskID;
+            doc.workerId = workerID;
+            doc.assignmentResult = assignmentResult;
+            doc.save(function (err) {
+                if (err) {
+                    console.log('Error while saving user');
+                    return handleError(err);
+                }
+                else {
+                    console.log("Dopo")
+                    console.log(doc);
+                    res.status(200).send("");
+
+                }
+            });
+        }
+    });
 });
 
 app.use((req, res, next) => {
