@@ -1,9 +1,10 @@
 var nodeLocation = "http://localhost:8080/";
-var serverLocation = "http://localhost:8080/";
+var serverLocation = "https://nameless-inlet-27677.herokuapp.com/";
 
 function visualizza () {
 
-    var url = nodeLocation + "assignment";
+   // var url = nodeLocation + "assignment";
+    var url = serverLocation + "assignment";
     fetch(url, {
         method:"get",
         headers: {
