@@ -19,6 +19,12 @@ app.use(express.static(__dirname + "/pages"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+mongoose.Promise = global.Promise;
+var options = {
+    useMongoClient: true,
+    user: 'admin',
+    pass: 'password'
+  };
 mongoose.connect('mongodb://<admin>:<password>@ds247347.mlab.com:47347/assignments', options).then(
     () => { console.log('DB connected successfully!'); },
     err => { console.error(`Error while connecting to DB: ${err.message}`); }
@@ -63,6 +69,7 @@ app.post('/assignment', function(req, res){
             res.statusCode(200);
         }
     
+    });
 });
 
 app.get('/assignment', function(req, res){
