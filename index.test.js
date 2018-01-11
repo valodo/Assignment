@@ -2,6 +2,10 @@ const request = require('supertest');
 const app = require('./index');
 
 
+const root = "http://localhost:5000"
+const fetch = require("node-fetch")
+const assignmentsRoot = root+'/assignment'
+
 const exampleAssignment = {
     taskId: "1111",
     assignmentId: "0",
@@ -9,16 +13,29 @@ const exampleAssignment = {
     assignmentResult: {}
 }
 
+const postAssignments = function (newAssignment) {
+    console.log(assignmentsRoot);
+    console.log(newAssignment);
+    return fetch(assignmentsRoot, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(newAssignment)
+    })
+}
+
 describe('Test POST Assignment', () => {
     
     test('Post correct assignment', async () => {
-      return request(app)
-      .get('/assignment')
+      return postAssignments(exampleAssignment)
+      /*.get('/assignment')
       .send({
         taskId: exampleAssignment.taskId,
         workerId: exampleAssignment.workerId,
         assignmentResult: exampleAssignment.assignmentResult
-      })
+      })*/
       .then(response => {
         expect(response.statusCode).toBe(200);
       });

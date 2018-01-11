@@ -66,12 +66,13 @@ app.post('/assignment', function(req, res){
         else {
             
             id = id + 1;
+           
             console.log(newAssignment);
         }
-        
+    });
+    
         res.statusCode = 200;
         res.send("");
-    });
 });
 
 app.get('/assignment', function(req, res){
