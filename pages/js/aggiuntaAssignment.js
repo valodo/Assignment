@@ -13,7 +13,7 @@ var invio = function () {
   };
 
   //var url = nodeLocation + "assignment";
-var url = serverLocation + "assignment";
+var url = "assignment";
   fetch(url,{
     method: "post",
     headers: {
